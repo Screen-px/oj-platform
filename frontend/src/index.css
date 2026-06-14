@@ -1,23 +1,24 @@
-/* === Token System === */
+/* === Token System — LeetCode Style === */
 :root {
-  --bg-root: #0b0e14;
-  --bg-surface: #13171f;
-  --bg-card: #181c25;
-  --bg-hover: #1e2330;
-  --border: #252b36;
-  --border-active: #3a4353;
-  --text-primary: #dde2ea;
-  --text-secondary: #8b929e;
-  --text-muted: #575e6b;
-  --accent: #f0a32a;
-  --accent-dim: #8b6914;
-  --success: #3fb950;
-  --danger: #f85149;
-  --info: #58a6ff;
-  --purple: #bc8cff;
+  --bg-root: #f7f8fa;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: #f0f1f3;
+  --border: #e4e6eb;
+  --border-active: #bfc2c9;
+  --text-primary: #262626;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8c8c8c;
+  --accent: #ffa116;
+  --accent-dim: #ffd699;
+  --success: #2cbb5d;
+  --danger: #ef4643;
+  --info: #0974d7;
+  --purple: #7054c8;
   --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --radius: 6px;
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,5 +35,5 @@ body {
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-active); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+::-webkit-scrollbar-thumb { background: #d0d4da; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a8adb8; }

@@ -2,35 +2,33 @@
 .list-root {
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 20px 80px;
+  padding: 40px 20px 80px;
 }
 
 /* === Hero === */
 .list-hero {
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 40px;
 }
 .hero-eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .hero-title {
-  font-family: var(--font-mono);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
+  margin-bottom: 18px;
 }
 .hero-stats {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 .stat {
   display: flex;
@@ -39,7 +37,7 @@
 }
 .stat-number {
   font-family: var(--font-mono);
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--accent);
 }
@@ -50,28 +48,26 @@
 }
 .stat-divider {
   width: 1px;
-  height: 36px;
+  height: 32px;
   background: var(--border);
 }
 .hero-allclear {
-  margin-top: 16px;
-  font-family: var(--font-mono);
+  margin-top: 14px;
   font-size: 13px;
   color: var(--success);
 }
 
 /* === Year Section === */
 .year-section {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 .year-heading {
-  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
   padding-left: 4px;
 }
 
@@ -79,45 +75,36 @@
 .card-group {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 .problem-card {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 16px;
-  background: var(--bg-card);
-  border: 1px solid transparent;
-  border-radius: var(--radius);
+  padding: 13px 18px;
+  background: var(--bg-surface);
   cursor: pointer;
-  transition: background 0.12s, border-color 0.12s;
-}
-.problem-card:first-child {
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.problem-card:last-child {
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-.problem-card:only-child {
-  border-radius: var(--radius);
+  transition: background 0.1s;
 }
 .problem-card:hover {
   background: var(--bg-hover);
-  border-color: var(--border-active);
 }
 .problem-card.solved {
-  border-left: 2px solid var(--success);
+  border-left: 3px solid var(--success);
 }
 
 .card-left {
   flex-shrink: 0;
-  width: 36px;
+  width: 32px;
 }
 .card-id {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-muted);
-  font-weight: 500;
 }
 
 .card-body {
@@ -134,15 +121,15 @@
 }
 .card-status {
   font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 4px;
+  padding: 2px 10px;
+  border-radius: 10px;
   font-weight: 500;
 }
 .card-status.ac {
-  background: rgba(63, 185, 80, 0.12);
+  background: #e8f8ef;
   color: var(--success);
 }
 .card-status.pending {
-  background: var(--bg-hover);
+  background: #f0f0f0;
   color: var(--text-muted);
 }
