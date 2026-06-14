@@ -5,7 +5,7 @@ export default function CodeEditor({ value, onChange }) {
     <MonacoEditor
       height="100%"
       language="python"
-      theme="vs-dark"
+      theme="vs"
       value={value}
       onChange={(v) => onChange(v || "")}
       options={{
