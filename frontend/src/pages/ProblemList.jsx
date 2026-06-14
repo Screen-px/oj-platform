@@ -3,25 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { fetchProblems } from "../api";
 import "./ProblemList.css";
 
-function ProblemCard({ p, onClick }) {
-  const solved = p.solved === 1;
-  return (
-    <div className={`problem-card ${solved ? "solved" : ""}`} onClick={onClick}>
-      <div className="card-left">
-        <span className="card-id">{String(p.id).padStart(2, "0")}</span>
-      </div>
-      <div className="card-body">
-        <span className="card-title">{p.title}</span>
-      </div>
-      <div className="card-right">
-        <span className={`card-status ${solved ? "ac" : "pending"}`}>
-          {solved ? "已通过" : "未通过"}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export default function ProblemList() {
   const [problems, setProblems] = useState([]);
   const navigate = useNavigate();
@@ -44,42 +25,49 @@ export default function ProblemList() {
   return (
     <div className="list-root">
       <header className="list-hero">
-        <p className="hero-eyebrow">Transfer Exam · Online Judge</p>
-        <h1 className="hero-title">转专业上机真题</h1>
+        <p className="hero-eyebrow">Programming Ability Test</p>
+        <h1 className="hero-title">转专业上机考试 · 编程真题集</h1>
         <div className="hero-stats">
           <div className="stat">
-            <span className="stat-number">{ac}</span>
-            <span className="stat-label">已通过</span>
-          </div>
-          <div className="stat-divider" />
-          <div className="stat">
-            <span className="stat-number">{total}</span>
-            <span className="stat-label">共 {total} 题</span>
+            已通过 <span className="stat-number">{ac}</span> / {total} 题
           </div>
         </div>
         {total > 0 && ac === total && (
-          <p className="hero-allclear">全部通关！</p>
+          <p className="hero-allclear">恭喜！全部题目已通过</p>
         )}
       </header>
 
-      <div className="list-content">
-        {order.map((cat) =>
-          grouped[cat] ? (
-            <section key={cat} className="year-section">
-              <h2 className="year-heading">{cat}真题</h2>
-              <div className="card-group">
+      {order.map((cat) =>
+        grouped[cat] ? (
+          <section key={cat} className="year-section">
+            <h2 className="year-heading">{cat}真题</h2>
+            <table className="problem-table">
+              <thead>
+                <tr>
+                  <th className="col-id">编号</th>
+                  <th className="col-title">题目名称</th>
+                  <th className="col-status">状态</th>
+                </tr>
+              </thead>
+              <tbody>
                 {grouped[cat].map((p) => (
-                  <ProblemCard
-                    key={p.id}
-                    p={p}
-                    onClick={() => navigate(`/problems/${p.id}`)}
-                  />
+                  <tr key={p.id} onClick={() => navigate(`/problems/${p.id}`)}>
+                    <td className="col-id">{p.id}</td>
+                    <td className="col-title">{p.title}</td>
+                    <td className="col-status">
+                      {p.solved ? (
+                        <span className="badge solved">已通过</span>
+                      ) : (
+                        <span className="badge unsolved">未通过</span>
+                      )}
+                    </td>
+                  </tr>
                 ))}
-              </div>
-            </section>
-          ) : null
-        )}
-      </div>
+              </tbody>
+            </table>
+          </section>
+        ) : null
+      )}
     </div>
   );
 }
