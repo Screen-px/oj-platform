@@ -77,7 +77,7 @@
 .problem-table tbody tr:hover { background: #f0f4ff; }
 .col-id     { width: 50px; color: var(--text-muted); }
 .col-title  { color: var(--info); }
-.col-status { width: 80px; text-align: right; }
+.col-status { width: 80px; text-align: right; white-space: nowrap; }
 
 .badge {
   display: inline-block;
