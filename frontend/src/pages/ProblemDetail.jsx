@@ -6,8 +6,6 @@ import ResultPanel from "../components/ResultPanel";
 import "./ProblemDetail.css";
 
 const DEFAULT_CODE = `# 在此编写你的 Python 代码
-# 使用 input() 读取输入
-# 使用 print() 输出结果
 `;
 
 export default function ProblemDetail() {
@@ -22,7 +20,6 @@ export default function ProblemDetail() {
     fetchProblem(id)
       .then((data) => {
         setProblem(data);
-        // 有历史代码则恢复，否则用默认模板
         setCode(DEFAULT_CODE);
         setResult(null);
       })
@@ -36,7 +33,7 @@ export default function ProblemDetail() {
       const res = await submitCode(parseInt(id), code);
       setResult(res);
     } catch (err) {
-      setResult({ status: "RE", details: [{ error: "网络请求失败: " + err.message }] });
+      setResult({ status: "RE", details: [{ error: "请求失败: " + err.message }] });
     }
     setSubmitting(false);
   };
@@ -46,61 +43,60 @@ export default function ProblemDetail() {
   }
 
   return (
-    <div className="detail-container">
-      {/* 顶部标题栏 */}
-      <header className="detail-header">
-        <button className="back-btn" onClick={() => navigate("/problems")}>
+    <div className="detail-root">
+      {/* 顶栏 */}
+      <header className="detail-topbar">
+        <button className="back-link" onClick={() => navigate("/problems")}>
           ← 返回列表
         </button>
-        <h1>{problem.title}</h1>
+        <span className="topbar-divider">/</span>
+        <span className="topbar-title">{problem.title}</span>
+        {problem.solved === 1 && <span className="topbar-badge">已通过</span>}
       </header>
 
-      <div className="detail-body">
-        {/* 左侧：题目描述 */}
-        <div className="description-panel">
-          <section>
-            <h3>题目描述</h3>
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{ __html: problem.description }}
-            />
+      <div className="detail-split">
+        {/* 左侧：题目 */}
+        <aside className="desc-pane">
+          <section className="desc-section">
+            <h3 className="desc-heading">题目描述</h3>
+            <div className="desc-body" dangerouslySetInnerHTML={{ __html: problem.description }} />
           </section>
 
-          <section>
-            <h3>输入格式</h3>
-            <div className="content" dangerouslySetInnerHTML={{ __html: problem.input_format }} />
+          <section className="desc-section">
+            <h3 className="desc-heading">输入格式</h3>
+            <div className="desc-body" dangerouslySetInnerHTML={{ __html: problem.input_format }} />
           </section>
 
-          <section>
-            <h3>输出格式</h3>
-            <div className="content" dangerouslySetInnerHTML={{ __html: problem.output_format }} />
+          <section className="desc-section">
+            <h3 className="desc-heading">输出格式</h3>
+            <div className="desc-body" dangerouslySetInnerHTML={{ __html: problem.output_format }} />
           </section>
 
-          <section>
-            <h3>样例</h3>
-            <div className="sample-block">
-              <div className="sample-box">
-                <span className="sample-label">样例输入</span>
+          <section className="desc-section">
+            <h3 className="desc-heading">样例</h3>
+            <div className="sample-row">
+              <div className="sample-cell">
+                <span className="sample-tag">输入</span>
                 <pre>{problem.sample_input || "（无）"}</pre>
               </div>
-              <div className="sample-box">
-                <span className="sample-label">样例输出</span>
+              <div className="sample-cell">
+                <span className="sample-tag">输出</span>
                 <pre>{problem.sample_output || "（无）"}</pre>
               </div>
             </div>
           </section>
 
           {problem.hints && (
-            <section>
-              <h3>提示</h3>
-              <div className="content" dangerouslySetInnerHTML={{ __html: problem.hints }} />
+            <section className="desc-section">
+              <h3 className="desc-heading">提示</h3>
+              <div className="desc-body" dangerouslySetInnerHTML={{ __html: problem.hints }} />
             </section>
           )}
-        </div>
+        </aside>
 
-        {/* 右侧：代码编辑器 + 结果 */}
-        <div className="code-panel">
-          <div className="editor-wrapper">
+        {/* 右侧：编辑器 + 结果 */}
+        <main className="editor-pane">
+          <div className="editor-area">
             <CodeEditor value={code} onChange={setCode} />
           </div>
 
@@ -109,7 +105,7 @@ export default function ProblemDetail() {
           </button>
 
           {result && <ResultPanel result={result} />}
-        </div>
+        </main>
       </div>
     </div>
   );
