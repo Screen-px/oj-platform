@@ -17,7 +17,7 @@ export default function ProblemList() {
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(p);
   }
-  const order = ["2024年", "2023年"];
+  const order = ["2025年", "2024年"];
 
   const total = problems.length;
   const ac = problems.filter((p) => p.solved).length;

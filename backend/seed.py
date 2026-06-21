@@ -487,7 +487,7 @@ def seed():
 
     # 前10题归2024年，后10题归2023年
     for i, p in enumerate(problems):
-        p["category"] = "2024年" if i < 10 else "2023年"
+        p["category"] = "2025年" if i < 10 else "2024年"
         db.add(Problem(**p))
 
     db.commit()
