@@ -17,7 +17,7 @@ export default function ProblemList() {
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(p);
   }
-  const order = ["2025年", "2024年"];
+  const order = ["2026年", "2025年", "2024年"];
 
   const total = problems.length;
   const ac = problems.filter((p) => p.solved).length;
@@ -50,9 +50,9 @@ export default function ProblemList() {
                 </tr>
               </thead>
               <tbody>
-                {grouped[cat].map((p) => (
+                {grouped[cat].map((p, idx) => (
                   <tr key={p.id} onClick={() => navigate(`/problems/${p.id}`)}>
-                    <td className="col-id">{p.id}</td>
+                    <td className="col-id">{idx + 1}</td>
                     <td className="col-title">{p.title}</td>
                     <td className="col-status">
                       {p.solved ? (
